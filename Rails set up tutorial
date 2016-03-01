@@ -1,0 +1,95 @@
+Rails set up tutorial
+
+Command line
+	rails new #site_name -d mysql
+	cd #site_name => enter directory
+	bundle install => install gem files
+	rails generate model #SingularName => generate model and db
+	rails generate controller #PluralNames index show new edit 
+		delete => generate the controller and the view
+	rake db:schema:dump => test connection
+	rails generate migration #MigrationName 
+	rake db:migrate => update db to latest version
+	rails db:migrate RAILS_ENV=development
+	rake db:migrate:status => show all the db version
+	rake db:migrate VERSION=#version_no => revert to previous 
+		version
+	rails generate scaffold #SingularName password:string email:string 
+		user:references=> generate db with parameters, user being the foreign key
+	bundle install
+
+Mysql
+	cd C:\Program Files\MYSQL\MYSQL Server 5.7\bin =>NAVIGATE TO mysql directory 
+	mysql -u root -p => login to root
+	SHOW DATABASES; 
+	CREATE DATABASE #sitename_development;
+	USE #sitename_development;
+	GRANT ALL PRIVILEGES ON #sitename_development.* TO '#sitenameadmin'@'localhost' IDENTIFIED BY '#password'
+	exit => logout
+	mysql -u #sitenameadmin -p => login
+	use #sitename_development => change to the db in used
+	SHOW tables; => show all tables
+	describe #table_name => show the fields (same as schema)
+
+Config>database.yml
+	change username, password and database name
+
+Controller/ HTTP Method
+	HTTP METHOD 	PATH 		CONTROLLER		USE
+	GET 		/articles		article#index	Display Articles
+	GET 		/articles/new	article#new		Return New Articles
+	POST		/articles 		article#create 	Create New Article
+	GET 		/articles/:id 	artile#show 	Display One Article
+	GET 	/articles/:id/edit	article#edit	Return Edit Aricle
+	PATCH/PUT 	/articles/:id 	article#update	Update One Article
+	DELETE 		/articles/:id 	article#destroy Delete One Article
+
+View
+	<% @articles.each do |article| %>
+		<tr>
+			<td><%=article.title%></td>
+			<td><%=article.post%></td>
+			<td><%=article.user_id%></td>
+			<td><%=link_to 'Show', article %></td>
+			<td><%=link_to 'Edit', edit_article_path(article)%></td>
+			<td><%=link_to 'Destroy', article, method: :delete, data: {confirm: 'Are you sure?'}%></td>
+		</tr>
+	<% end %>
+
+	Partial
+	_form.html.erb => partial template
+	render 'forms' => call on the partial template
+
+Model - active record all methods
+  t.column # adds an ordinary column. Ex: t.column(:name, :string)
+  t.index # adds a new index.
+  t.timestamps
+  t.change # changes the column definition. Ex: t.change(:name, :string, :limit => 80)
+  t.change_default # changes the column default value.
+  t.rename # changes the name of the column.
+  t.references
+  t.belongs_to
+  t.string
+  t.text
+  t.integer
+  t.float
+  t.decimal
+  t.datetime
+  t.timestamp
+  t.time
+  t.date
+  t.binary
+  t.boolean
+  t.remove
+  t.remove_references
+  t.remove_belongs_to
+  t.remove_index
+  t.remove_timestamps
+
+ Haml
+ 	- to execute erb file <% and not <%=, use - instead of =
+
+ Git
+ 	git init
+ 	git add .
+ 	git commit -m "initial commit"
