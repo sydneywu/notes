@@ -1,0 +1,16 @@
+1. Open a CLI window and type the following
+cd /blah/blah/node_api<enter>
+mkdir data<enter>
+mongod --dbpath /blah/blah/node_api<enter>
+2. A bunch of text should appear, you will see "I NETWORK [initandlisten]" alot;
+3. Open a new CLI window and type: mongo<enter>
+4. Hopefully you will see "MongoDB shell version: 3.0.1 connecting to: test" If not, go to the root folder of your OS and make a directory called "data" and then repeat from step 3. above
+5. In the second "mongo<enter>" CLI window type: use node_api*
+6. You should see "switched to db node_api"*
+7. Open server.js and change the "mongoose.connect..." line to the following:
+mongoose.connect('mongodb://localhost/node_api');*
+8. In a third [new?] CLI window ctrl+C (if necessary), cd to blah/blah/node_api* (if necessary) and then run "node server.js" again.
+
+You should now have a mongo db located in node_api/data and be connecting to it via server.js
+
+* substitute "node_api" for whatever the name of your project folder is.

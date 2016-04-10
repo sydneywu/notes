@@ -90,6 +90,10 @@ Model - active record all methods
  	- to execute erb file <% and not <%=, use - instead of =
 
  Git
- 	git init
+ 	add SSH key: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
+ 	
+ 	git init 		=> create git in folder
  	git add .
  	git commit -m "initial commit"
+
+ 	(in git commit - type I to enter text. type ESC and :wq to ext)

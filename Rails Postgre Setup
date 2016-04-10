@@ -1,0 +1,5 @@
+rails new #SiteName -d postgresql
+cd #SiteName
+createuser -P -s -e #SiteName (use the same name)
+(enter the password and remove comments for username, password and localhost)
+rake db:create

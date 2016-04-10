@@ -1,0 +1,27 @@
+// Adding a local repository to remote
+
+git init
+git add .
+git commit -m "First Commit"
+create the repository on github and copy the url
+git remote add origin #URL
+git remote -v 	//to confirm the repositories are linked
+git push origin master
+
+//to fetch from remote
+git clone #URL
+
+//to create a SSH key
+use git bash
+type ssh-keygen
+accept the default location
+enter passphrase
+cat .ssh/id_rsa.pub
+right click on top of cmd windows and edit->mark. then select the text and edit->copy
+copy to github-> Settings -> SSH -> new SSH
+
+//change git remote repo
+git remote set-url origin #URL
+
+//Use Vim
+press esc. type :wq! to save
