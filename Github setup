@@ -10,6 +10,8 @@ git push origin master
 
 //to fetch from remote
 git clone #URL
+git pull origin master
+git checkout -- .  // discard unstaged changes
 
 //to create a SSH key
 use git bash
@@ -21,7 +23,7 @@ right click on top of cmd windows and edit->mark. then select the text and edit-
 copy to github-> Settings -> SSH -> new SSH
 
 //change git remote repo
-git remote set-url origin #URL
+git remote set-url origin #url
 
 //Use Vim
 press esc. type :wq! to save

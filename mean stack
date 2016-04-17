@@ -1,0 +1,104 @@
+good resources: 
+mean stack using express ejs - https://thinkster.io/mean-stack-tutorial
+mean stack without generator - https://www.youtube.com/watch?v=AEE7DY2AYvI&nohtml5=False
+
+/*== node.js ==*/
+
+generator: npm install -g express-generator
+generator: express --ejs site-name
+
+update package.js and run npm install
+
+
+
+
+/*== mongodb ==*/
+1 setup: npm install --mongoose
+1 setup: run mongo d and mongo in seperate cmd. In the mongo cli, setup: type use <database>
+2 cmd: db.help() to get all the command
+2 cmd: use #dbname
+3 require mongoose: in server.js/app.js => var mongoose = require('mongoose');
+4 connect to mongo: mongoose.connect('mongodb://localhost/news')
+5 create object schema: in models-> #object.js, 
+	var mongoose = require('mongoose');
+	var objectSchema = new mongoose.Schema({
+		title: string;
+		link: string;
+		upvotes: {type: Number, default: 0},
+		comments [{ type: mongoose.Scehma.Types.ObjectId, ref: 'Comment'}] // to link two object together
+	mongoose.model('Object', ObjectSchema);
+	}) 
+5 create object schema: in server.js =>require('./models/Posts');
+
+/*== express ==*/
+create CRUD route under route/index.js 
+	
+	//get all
+	router.get('/guests', function(req, res, next){
+		Guest.find(function(err,post){
+			if(err){return next(err); }
+
+			res.json(guests);
+		});
+	});
+
+	// post new
+	router.post('/guests', function(req, res, next){
+		guest = new Guest(req.body);
+
+		guest.save(function(err, guest){
+			if(err){return next(err);}
+
+			res.json(guest);
+		})
+	})
+
+	//middleware to assign ID from Params
+	router.param('guest', function(req, res, next){
+		var query = Guest.findById(id);
+
+		query.exec(function(err,guest){
+			if (err){ return next(err);}
+			if(!guest){return next(new Error('can\'t find guest'));}
+
+			req.guest = guest;
+			return next();
+		})
+	})
+
+	//get one
+	router.get('guest/:guest', function(req,res){
+		res.json(req.guest);
+	})
+
+/*== wiring angular with express ==*/
+insert $http request into factory/service of angularApp
+	
+	//get route
+	o.getAll = $http.get('/guests').success(function(data){
+		angular.copy(data, o.guests); 			//duplicate the set of data
+	})
+
+	//post route
+	o.create = function(guest){
+		$http.post('/guests', guest).success(function(data){
+			o.guests.push(data);
+		})
+	}
+
+	// create a promise to load data first under state
+	resolve: {
+		guestPromise: ['guests', function(guests){
+			return guests.getAll();
+		}]
+	}
+
+	//modify scope.addGuest for oru post route
+	$scope.addGuest = function(){
+		//insert error statement
+		guest.create({
+			key: 'value',
+			key: 'value'
+		});
+		$scope.key = '';			//reset key
+	}
