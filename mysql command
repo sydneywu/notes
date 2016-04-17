@@ -1,0 +1,11 @@
+mysql command
+
+http://cse.unl.edu/~sscott/ShowFiles/SQL/CheatSheet/SQLCheatSheet.html
+
+mysql -u root -p
+CREATE USER #wpadmin@localhost identified by '#wpPassword';
+GRANT ALL PRIVILEGES ON #wordpress.* TP #wpadmin@localhost;
+
+SHOW DATABASES;
+CREATE DATABASE #name;
+USE DATABASE #name;

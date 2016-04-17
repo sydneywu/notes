@@ -1,0 +1,26 @@
+/*== Putty == */
+ip: #ip
+port: 22
+connection type: SSH
+Preferred SSH protocol version: 2
+(can save for future reference)
+user: root
+password: #password(will be prompted to change after first time)
+
+/*== initial setup ==*/
+adduser #demo
+gpasswd -a demo sudo	//add sudo privilege
+su - demo 		//switch user
+
+
+
+/*== SSH ==*/
+mkdir ~/.ssh
+chmod 0700 ~/.ssh
+touch ~/.ssh/authorized_keys
+chmod 0644 ~/.ssh/authorized_keys
+sudo vim ~/.ssh/authorized_keys
+copy code from putty (select all > copy)  //note code will include comments
+right click to paste ssh key
+save ->esc : w q enter
+
