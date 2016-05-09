@@ -1,0 +1,77 @@
+Put
+
+in order to implement a put rest route. The followings are required to be done:
+1. In model -> add a change method to GuestSchema
+
+2. In index.js -> create a router.put method.
+	a) if use guests/:guest/change. Then require a middleware router.param
+	b) if use guests/:id/change. Then no need middleware but need to write functions such as:
+		{_id: req.params.id}
+		{$set: {key: req.body.key}}
+
+
+
+3. In AngularApp.js -> Create a function o.change within app.factory
+	o.change = function(guest){
+		return $http.put('/guests/'+ guest._id + '/change')
+	}
+
+4. In the same file -> Create a function within app.controller
+	$scope.changeGuest = function(guest){
+		guestsFactory.change(guest)
+	}
+
+5. In index.ejs -> Create elements to bind the controller function
+	<span ng-click="ChangeGuest(guest)">+ </span>
+
+Display One
+
+in order to implement a seperate page to display a specific item from get, please do:
+1. In index.js -> Create a router.get method
+	router.get('/guests/:id', function(req, res){
+		Guest.findOne({_id: req.params.id})
+		.exec(function(err, guest){
+			res.json(guest);
+		})
+	})
+
+2. In angularApp -> Create a $stateProvider.state
+	.state('guestDetails',{
+		url: '/guests/{id}',
+		templateUrl: '/guest_details.html',
+		controller: 'GuestCtrl',
+		resolve:{				//note I call this guestb to show that this can be injected
+			guestb: ['$stateParams', 'guestsFactory', function($stateParams, guests){
+				return guests.get($stateParams.id);
+			}]
+		}
+	})
+
+3. Create a new controller 
+	app.controller('GuestCtrl',[
+		'$scope',
+		'$stateParams',
+		'guestsFactory',
+		'guestb',
+		function($scope, $stateParams, guestsFactory, guestb){
+			$scope.guest = guestb;
+		}
+	])
+
+4. In index.ejs -> Create a link 
+	<a href="#/guests/{{guest._id}}"> text </a>
+
+5. In index.ejs -> Create another script
+	<script type = "text/ng-template" id= "/guest_details.html">
+		<input type="text" ng-model="guest.name">
+	</script>
+
+Update
+To update, here are the steps:
+1. index.js -> Create a put route
+	it is important to use $set to identify the values to change.
+2. angularApp -> add a update function under guestsFactory
+	it is important to give it the parameters guest-> for identifying the guest id and data1 -> for passing json object
+3. Under GuestCtrl -> create a updateGuest function
+	again, passs the information from ng-model using $scope.guset.name
+4. index.ejs -> use a form and bind it with ng-submit to the updateGuest()

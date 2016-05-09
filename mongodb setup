@@ -14,3 +14,8 @@ mongoose.connect('mongodb://localhost/node_api');*
 You should now have a mongo db located in node_api/data and be connecting to it via server.js
 
 * substitute "node_api" for whatever the name of your project folder is.
+
+/*======= command ===========*/
+show dbs -> Show dtatabase
+use #db -> 
+show collections
