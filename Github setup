@@ -25,5 +25,13 @@ copy to github-> Settings -> SSH -> new SSH
 //change git remote repo
 git remote set-url origin #url
 
+//checkout previous commit
+git log 	// to see previous file
+git checkout #number
+
 //Use Vim
+press a to start typing
 press esc. type :wq! to save
+
+// command useful tools
+to copy a sentence from cmd, highlight it and press right click at the same time

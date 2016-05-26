@@ -75,3 +75,34 @@ To update, here are the steps:
 3. Under GuestCtrl -> create a updateGuest function
 	again, passs the information from ng-model using $scope.guset.name
 4. index.ejs -> use a form and bind it with ng-submit to the updateGuest()
+
+Authentication
+	For authentication to work, use passport, passport-local, jsonwebtoken, jwt-express and crypto
+
+	1. Create User model with function setPassword(), validPassword(), generateJWT()
+
+	2. Express Routes
+		a) Under routes, set var auth = jwt({secret: 'SECRET', userProperty:'payload'}).
+		b) Call on auth as middleware. i.e. router.get('url', auth, function(){...})
+		c) use req.payload._id to find user.
+		//at this point, we still need a authInterceptor at the front end to pass the payload to the header.
+
+	3.  Angular Ctrl and Routes
+		a) create an authFactory for register and login. When either are performed, save token under $window.localStorage['name-of-token']
+		b) Create an authInterceptor to pass Authorization into the header.
+			return { 
+				headers: {Authorization: 'Bearer' + authFactory.getToken()} 
+			}
+		c) Call upon the authInterceptor when performing crud so that the header will always contain the token. 
+		// This complete the cycle between front end and backend.
+
+
+UIB Modal
+	Common issue is faced when the angularjs is a outdated version.
+
+	1. link the angular-ui library in the html
+	2. inject uib modal into the controller.
+	3. open modal by using $uib.open({ ... parameters... })
+	4. Create a controller ModalInstanceCtrl to handle the logic inside the modal window.
+
+
