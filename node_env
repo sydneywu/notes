@@ -1,0 +1,7 @@
+/*******windows*******/
+set NODE_ENV=development
+set NODE_ENV=production
+
+	/*******to check*******/
+	node 	//open node shell
+	process.env.NODE_ENV		//display current environment

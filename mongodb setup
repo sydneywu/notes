@@ -16,6 +16,16 @@ You should now have a mongo db located in node_api/data and be connecting to it 
 * substitute "node_api" for whatever the name of your project folder is.
 
 /*======= command ===========*/
-show dbs -> Show dtatabase
+mongo -> start mongo cli
+show dbs -> Show database
 use #db -> 
-show collections
+show collections -> Show all collections (or table)
+
+db.#collectionName.find() -> view everything from this collection
+	e.g. db.#collectionName.find({"username":"two"}).pretty()
+
+db.#collectionName.upate() -> update a key value of this collection
+	e.g. db.#collectionName.update({"username":"two"}, {$set:{"table":[]}} )
+
+db.#collectionName.remove() -> delete all collections or single collection
+	e.g. db.#collectioName.remove({"username":"two"}, {justOne: true})
