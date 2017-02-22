@@ -41,3 +41,10 @@ db.#collectionName.remove() -> delete all collections or single collection
 
 	//restore (in normal command, not mongo)
 	mongorestore #directoryPath
+
+/*======== mongo-express ===========*/
+	//https://github.com/mongo-express/mongo-express
+
+	install:npm install -g mongo-express
+	run: 	mongo-express -u admin -p pass -d #database
+	access:	http://localhost:8081
