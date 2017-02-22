@@ -29,3 +29,15 @@ db.#collectionName.upate() -> update a key value of this collection
 
 db.#collectionName.remove() -> delete all collections or single collection
 	e.g. db.#collectioName.remove({"username":"two"}, {justOne: true})
+
+/*========= backup and restore ==========*/
+	// checkout https://www.youtube.com/watch?v=2RApNiXsd-g
+
+	//backup (in normal command, not mongo)
+	mongodump --out #directoryPath
+			
+			//to specify dbs path
+			mongodump --db #dbName --collections #collectionName --out #directoryPath
+
+	//restore (in normal command, not mongo)
+	mongorestore #directoryPath
