@@ -40,7 +40,13 @@ db.#collectionName.remove() -> delete all collections or single collection
 			mongodump --db #dbName --collections #collectionName --out #directoryPath
 
 	//restore (in normal command, not mongo)
-	mongorestore #directoryPath
+	mongorestore #directoryPath 
+	OR
+	mongorestore --db #database #directoryPath
+
+/*================= Delete DB ==============*/
+> use mydb; 
+> db.dropDatabase()
 
 /*======== mongo-express ===========*/
 	//https://github.com/mongo-express/mongo-express
@@ -49,4 +55,4 @@ db.#collectionName.remove() -> delete all collections or single collection
 	run: 	mongo-express -u admin -p pass -d #database
 	access:	http://localhost:8081
 
-	..
+/*======== mongo-lab ===========*/
