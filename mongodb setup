@@ -44,6 +44,9 @@ db.#collectionName.remove() -> delete all collections or single collection
 	OR
 	mongorestore --db #database #directoryPath
 
+use mongoimport to import json data
+e.g.
+mongoimport -d simpleexpress2 C:\Users\sydne_000\Documents\site\test\node-oauth2-server-implementation\mongo-dump\users.json
 /*================= Delete DB ==============*/
 > use mydb; 
 > db.dropDatabase()
